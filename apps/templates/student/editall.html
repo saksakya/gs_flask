@@ -1,0 +1,53 @@
+{% extends 'student/base.html' %}
+
+{% block title %}生徒情報一括更新{% endblock %}
+
+{% block content %}
+<div>
+    <header>生徒情報一括更新</header>
+    <section>
+        <form
+            method="post"
+            action="{{ url_for('student.edit_all')}}"
+        >
+            {{ form.all[0].csrf_token }}
+
+
+
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-error">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        
+            {#{% for field, errors in form.errors.items() %}
+                <div class="alert alert-error">
+                    {{ form[field].label }}: {{ ', '.join(errors) }}
+                </div>
+            {% endfor %}#}
+
+
+            
+            <table border="1">
+                <tr>
+                    <th>number</th>
+                    <th>nickname</th>
+                </tr>
+                {% for student in student_list %}
+                    <tr>
+                        <td>{{ form.all[loop.index-1].number(size=30, placeholder="number",value=student.number) }}</td>
+                        <td>{{ form.all[loop.index-1].nickname(size=30, placeholder="number",value=student.nickname) }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <p>{{ form.submit() }}</p>
+
+        </form>
+
+    <a href="{{ url_for('student.top') }}" role="button">一覧に戻る</a>
+
+    </section>
+
+</div>
+{% endblock %}

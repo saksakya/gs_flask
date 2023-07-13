@@ -1,0 +1,31 @@
+{% extends "auth/base.html" %}
+
+{% block title %}ログイン{% endblock %}
+
+{% block content %}
+<div>
+    <header>ログイン</header>
+    <section>
+        <form method="post" action="{{ url_for('auth.login') }}">
+
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-error">
+                {{ message }}
+            </div>
+            {% endfor %}
+    
+            {% for field, errors in form.errors.items() %}
+            <div class="alert alert-error">
+                {{ form[field].label }}: {{ ', '.join(errors) }}
+            </div>
+            {% endfor %}
+
+        {{ form.csrf_token }}
+        <p>{{ form.userid(placeholder="UserID") }}</p>
+        <p>{{ form.password(placeholder="Password") }}</p>
+        <p>{{ form.submit() }}</p>
+        <p></p>
+        </form>
+    </section>
+</div>
+{% endblock %}

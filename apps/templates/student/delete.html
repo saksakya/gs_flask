@@ -1,0 +1,22 @@
+{% extends 'student/base.html' %}
+
+{% block title %}生徒情報削除{% endblock %}
+
+{% block content %}
+<div>
+    <header>生徒情報削除</header>
+
+    <p>以下の情報を削除しますか?</p>
+    <section>
+        <form method="POST">
+            <p>{{ post.number }}</p>
+            <p>{{ post.nickname }}</p>
+            <p><input type="submit" value="削除"></p>
+        </form>
+
+    <a href="{{ url_for('student.top') }}" role="button">一覧に戻る</a>
+
+    </section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'student/base.html' %}
+
+{% block title %}最適化アプリ{% endblock %}
+
+{% block content %}
+
+<header>最適化アプリ</header>
+    <a href="{{ url_for('student.regist') }}"role="button">新規登録</a>
+    <a href="{{ url_for('student.edit_all') }}" role="button">一括編集</a>
+    {% if student_list == [] %}
+        <p>リストが登録されていません。</p>
+    {% else %}
+        <table border="1">
+            <tr>
+                <th>number</th>
+                <th>nickname</th>
+                <th>次回出席</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15</th>
+                <th>16</th>
+                <th>17</th>
+                <th>18</th>
+                <th>19</th>
+                <th>20</th>
+            </tr>
+            {% for student in student_list %}
+                <tr>
+                    <td>{{student.number}}</td>
+                    <td>{{student.nickname}}</td>
+                    <td>{{student.p_flag}}</td>
+                    <td>{{student.group01}}</td>
+                    <td>{{student.group02}}</td>
+                    <td>{{student.group03}}</td>
+                    <td>{{student.group04}}</td>
+                    <td>{{student.group05}}</td>
+                    <td>{{student.group06}}</td>
+                    <td>{{student.group07}}</td>
+                    <td>{{student.group08}}</td>
+                    <td>{{student.group09}}</td>
+                    <td>{{student.group10}}</td>
+                    <td>{{student.group11}}</td>
+                    <td>{{student.group12}}</td>
+                    <td>{{student.group13}}</td>
+                    <td>{{student.group14}}</td>
+                    <td>{{student.group15}}</td>
+                    <td>{{student.group16}}</td>
+                    <td>{{student.group17}}</td>
+                    <td>{{student.group18}}</td>
+                    <td>{{student.group19}}</td>
+                    <td>{{student.group20}}</td>
+                    <td>
+                        <a href="{{ url_for('student.edit', id=student.id) }}" role="button">編集</a>
+                        <a href="{{ url_for('student.delete', id=student.id) }}" role="button">削除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{% endblock %}
